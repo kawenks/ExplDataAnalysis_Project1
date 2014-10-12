@@ -1,7 +1,16 @@
 library(lubridate)
 library(dplyr)
 
-setwd("C:/work/R-prog/exdata-data-household_power_consumption")
+if (!getwd() == "./exdata-data-household_power_consumption") {
+    dir.create("./exdata-data-household_power_consumption", showWarnings=FALSE)
+    setwd("./exdata-data-household_power_consumption")
+}
+
+if (!file.exists("household_power_consumption.txt")) {
+    URL <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
+    download.file(URL,"download.zip")
+    unzip("download.zip")
+}
 
 ## read the whole data file into a data frame
 ##
